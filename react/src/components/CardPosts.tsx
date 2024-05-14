@@ -1,5 +1,8 @@
 import dayjs from "dayjs";
 import { cn } from "../lib/utils";
+import { LazyLoadImage } from "react-lazy-load-image-component";
+import "react-lazy-load-image-component/src/effects/blur.css";
+import lazyLoading from "../assets/lazy-loading.jpg"
 
 type CardPostsProps = {
   title: string;
@@ -17,6 +20,7 @@ const CardPosts = (props: CardPostsProps) => {
   const handleFormatDatePost = (datetime: string) => {
     return dayjs(datetime).format("dddd, MMMM D, YYYY, HH:mm");
   };
+
   return (
     <>
       <div
@@ -31,6 +35,7 @@ const CardPosts = (props: CardPostsProps) => {
               className="w-5 h-5 rounded-full"
               loading="lazy"
             />
+
             <span className="text-orange-600 font-medium">{author?.name}</span>
             <span className="text-gray-500">
               posted on {handleFormatDatePost(createdAt)}
@@ -39,13 +44,14 @@ const CardPosts = (props: CardPostsProps) => {
         </div>
         <div className="p-4">
           <div className="flex gap-4 items-start">
-            <img
+            <LazyLoadImage
               src={image}
+              className="min-w-[240px] max-w-[240px] object-cover h-[180px]"
+              placeholderSrc={lazyLoading}
               alt="post image"
-              className="w-[240px] object-contain"
-              loading="lazy"
+              effect="blur"
             />
-            <div>
+            <div className="w-fit">
               <p className="text-lg font-medium">{title}</p>
               <p className="mt-2 text-sm">{body}</p>
             </div>
