@@ -29,6 +29,7 @@ const CardPosts = (props: CardPostsProps) => {
               src={author?.avatarUrl}
               alt="avatar"
               className="w-5 h-5 rounded-full"
+              loading="lazy"
             />
             <span className="text-orange-600 font-medium">{author?.name}</span>
             <span className="text-gray-500">
@@ -41,7 +42,8 @@ const CardPosts = (props: CardPostsProps) => {
             <img
               src={image}
               alt="post image"
-              className="max-w-[240px] object-contain"
+              className="w-[240px] object-contain"
+              loading="lazy"
             />
             <div>
               <p className="text-lg font-medium">{title}</p>

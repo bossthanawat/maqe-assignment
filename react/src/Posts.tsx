@@ -4,7 +4,7 @@ import CardPosts from "./components/CardPosts";
 
 const Posts = () => {
   const timezone = Intl.DateTimeFormat().resolvedOptions().timeZone;
-  const { data: posts } = useQuery({
+  const { data: posts, isLoading } = useQuery({
     queryKey: ["getPosts"],
     queryFn: async () => {
       const { data: posts } = await getPosts();
@@ -24,6 +24,7 @@ const Posts = () => {
         <h1 className="text-2xl font-medium">MAQE Forum</h1>
         <p className="mt-6">Your current timezone is: {timezone}</p>
         <div className="flex flex-col gap-4 my-4">
+          {isLoading && <div>Loading...</div>}
           {posts?.map((post, index) => (
             <CardPosts
               key={post.id}
